@@ -1,0 +1,15 @@
+.block {
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: blue;
+}
+
+button {  
+margin: 10px;
+  padding: 10px 20px;
+  background-color: #aff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
