@@ -8,33 +8,43 @@ interface Props {
     onClose: () => void;
 }
 
+// Встановлюємо кореневий елемент для доступності (додати id="root" у index.html)
 Modal.setAppElement('#root');
 
 export default function ImageModal({ image, onClose }: Props) {
     useEffect(() => {
         const handleEsc = (e: KeyboardEvent) => {
-            if (e.key === 'Escape') onClose();
+            if (e.key === 'Escape') {
+                onClose();
+            }
         };
+
         window.addEventListener('keydown', handleEsc);
         return () => window.removeEventListener('keydown', handleEsc);
     }, [onClose]);
-
-    const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (e.target === e.currentTarget) onClose();
-    };
 
     return (
         <Modal
             isOpen
             onRequestClose={onClose}
-            onClick={handleOverlayClick}
-            className={styles.modal}
+            shouldCloseOnOverlayClick={true}
+            className={styles.content}
             overlayClassName={styles.overlay}
         >
-            <img src={image.urls.regular} alt={image.alt_description} />
-            <p>Автор: {image.user.name}</p>
-            <p>Лайки: {image.likes}</p>
-            {image.description && <p className={styles.description}>Опис: {image.description}</p>}
+            <div className={styles.imgContainer}>
+                <img
+                    className={styles.img}
+                    src={image.urls.regular}
+                    alt={image.alt_description}
+                />
+                <div className={styles.info}>
+                    <p>Автор: <span className={styles.details}>{image.user.name}</span></p>
+                    <p>Лайки: <span className={styles.details}>{image.likes}</span></p>
+                    {image.description && (
+                        <p>Опис: <span className={styles.details}>{image.description}</span></p>
+                    )}
+                </div>
+            </div>
         </Modal>
     );
 }
