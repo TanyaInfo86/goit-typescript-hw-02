@@ -1,15 +1,32 @@
 .block {
-display: flex;
-justify-content: center;
-align-items: center;
-background-color: blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: green;
+  padding: 20px;
 }
 
-button {  
-margin: 10px;
+.form {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.input {
+  flex-grow: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.button {
   padding: 10px 20px;
-  background-color: #aff;
+  background-color: grey;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  color: white;
+  font-weight: bold;
 }
